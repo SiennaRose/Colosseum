@@ -228,7 +228,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218909810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -247,5 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 8527231066441791865, guid: adf07d18612eead4fb2b70152f5a32d8,
+    type: 3}
+  topWallPrefab: {fileID: 7178046528945369199, guid: 1146644f7bb0af741991c00ece69aeef,
     type: 3}
   mapSize: {x: 10, y: 10}
