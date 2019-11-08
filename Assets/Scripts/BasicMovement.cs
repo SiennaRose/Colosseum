@@ -6,6 +6,8 @@ public class BasicMovement : MonoBehaviour
 {
     public Animator animator;
 
+    public Rigidbody2D rb; 
+
     // Update is called once per frame
     void Update()
     {
@@ -15,6 +17,7 @@ public class BasicMovement : MonoBehaviour
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Magnitude", movement.magnitude);
 
-        transform.position = transform.position + movement * Time.deltaTime;
+        //transform.position = transform.position + movement * Time.deltaTime;
+        rb.velocity = new Vector2(movement.x, movement.y);
     }
 }
