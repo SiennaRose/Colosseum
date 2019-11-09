@@ -8,11 +8,12 @@ public class MapGenerator : MonoBehaviour
     public Transform topWallPrefab;
     public Transform rightWallPrefab;
     public Transform leftWallPrefab;
+    public Transform bottomWallPrefab;
     public Vector2 mapSize;
 
     public void Start()
     {
-        mapSize.x = 17;
+        mapSize.x = 16;
         mapSize.y = 7;
         GenerateMap();
     }
@@ -23,7 +24,7 @@ public class MapGenerator : MonoBehaviour
         {
             for(int y = 0; y < mapSize.y; y++)
             {
-                Vector2 tilePosition = new Vector2(-mapSize.x + 0.5f + x,-mapSize.y/2 + 0.5f + y);
+                Vector2 tilePosition = new Vector2(-mapSize.x/2 + 0.5f + x,-mapSize.y/2 + 0.5f + y);
                 Transform newTile = Instantiate(tilePrefab);
                 newTile.position = tilePosition;
 
@@ -33,6 +34,14 @@ public class MapGenerator : MonoBehaviour
                     Vector2 wallPosition = new Vector2(-mapSize.x/2 + 0.5f + x, -mapSize.y / 2 + 0.5f + y+1);
                     Transform newWallTile = Instantiate(topWallPrefab);
                     newWallTile.position = wallPosition;
+                }
+
+                //adding bottom wall tiles
+                if(y == 0)
+                {
+                    Vector2 bottomWallPosition = new Vector2(-mapSize.x / 2 + 0.5f + x, -mapSize.y / 2 + 0.5f + y -1);
+                    Transform newBottomWallTile = Instantiate(bottomWallPrefab);
+                    newBottomWallTile.position = bottomWallPosition;
                 }
 
                 //adding right walls
@@ -68,7 +77,6 @@ public class MapGenerator : MonoBehaviour
                     Transform newleftWallTile = Instantiate(leftWallPrefab);
                     newleftWallTile.position = leftWallPosition;
                 }
-                
             }
         }
     }

@@ -254,4 +254,6 @@ MonoBehaviour:
     type: 3}
   leftWallPrefab: {fileID: 5858099293304751085, guid: 7399ca31aca27a44f89e6f19cf139cba,
     type: 3}
+  bottomWallPrefab: {fileID: 5925038309401455580, guid: 2ce0d7b65c008544a9723881a62e6007,
+    type: 3}
   mapSize: {x: 10, y: 10}
