@@ -339,5 +339,7 @@ MonoBehaviour:
     type: 3}
   topRightCornerPrefab: {fileID: 2774348403712838049, guid: 1a3bd50032853e548910f926177b2b72,
     type: 3}
+  topLeftCornerPrefab: {fileID: 4628758111092177527, guid: 2cfa85eabc9037d44afbd041a655045f,
+    type: 3}
   mapSize: {x: 10, y: 10}
   sizeOfList: 0
