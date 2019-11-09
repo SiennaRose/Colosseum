@@ -9,6 +9,7 @@ public class MapGenerator : MonoBehaviour
     public Transform rightWallPrefab;
     public Transform leftWallPrefab;
     public Transform bottomWallPrefab;
+    public Transform spikePrefab; 
     public Vector2 mapSize;
 
     public struct Coord
@@ -34,9 +35,13 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateMap()
     {
-        allTileCoords = new List<Coord>(); 
+        allTileCoords = new List<Coord>();
 
-        for(int x = 0; x < mapSize.x; x++)
+        Vector2 spikePositon = getCoordinate(0, 0);
+        Transform newSpike = Instantiate(spikePrefab);
+        newSpike.position = spikePositon;
+
+        for (int x = 0; x < mapSize.x; x++)
         {
             for(int y = 0; y < mapSize.y; y++)
             {

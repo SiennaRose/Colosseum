@@ -256,4 +256,6 @@ MonoBehaviour:
     type: 3}
   bottomWallPrefab: {fileID: 5925038309401455580, guid: 2ce0d7b65c008544a9723881a62e6007,
     type: 3}
+  spikePrefab: {fileID: 1665128556208890406, guid: 950c03bc6f6057e489389dd9aabc7e17,
+    type: 3}
   mapSize: {x: 10, y: 10}
