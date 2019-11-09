@@ -12,6 +12,8 @@ public class MapGenerator : MonoBehaviour
     public Transform spikePrefab;
     public Transform topRightCornerPrefab;
     public Transform topLeftCornerPrefab;
+    public Transform bottomRightPrefab;
+    public Transform bottomLeftPrefab;
     public Vector2 mapSize;
 
     public struct Coord
@@ -71,6 +73,16 @@ public class MapGenerator : MonoBehaviour
         Vector2 topLeftPosition = new Vector2(-mapSize.x / 2 - 0.5f, mapSize.y / 2 + 1.5f);
         Transform newTopLeftTile = Instantiate(topLeftCornerPrefab);
         newTopLeftTile.position = topLeftPosition;
+
+        //adding bottom left corner
+        Vector2 bottomLeftPosition = new Vector2(-mapSize.x / 2 - 0.5f, -mapSize.y / 2 - 0.5f);
+        Transform newBottomLeftTile = Instantiate(bottomLeftPrefab);
+        newBottomLeftTile.position = bottomLeftPosition;
+
+        //adding bottom right corner
+        Vector2 bottomRightPosition = new Vector2(mapSize.x / 2 + 0.5f, -mapSize.y / 2 - 0.5f);
+        Transform newBottomRightTile = Instantiate(bottomRightPrefab);
+        newBottomRightTile.position = bottomRightPosition;
 
         for (int x = 0; x < mapSize.x; x++)
         {
