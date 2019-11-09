@@ -29,7 +29,7 @@ public class MapGenerator : MonoBehaviour
     }
 
     public List<Coord> allTileCoords;
-    public List<Transform> spikes; 
+    public Transform[,] tiles; 
     public int sizeOfList = 0;
     public float lifetime = 10.0f; 
 
@@ -38,7 +38,7 @@ public class MapGenerator : MonoBehaviour
         mapSize.x = 16;
         mapSize.y = 7;
         allTileCoords = new List<Coord>();
-        spikes = new List<Transform>();
+        tiles = new Transform[(int)mapSize.x,(int)mapSize.y];
         GenerateMap();
         
     }
@@ -59,11 +59,27 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateSpikes()
     {
+        float spawnDelay = 1;
+        float tileFlashSpeed = 4; 
+
         int numSpikes = 20; 
         for(int x = 0; x < numSpikes; x++)
         {
             float rand = Random.Range(0.0f,(float)(sizeOfList));
             Vector2 spikePositon = getCoordinate((int)(allTileCoords[(int)rand].x), (int)(allTileCoords[(int)rand].y));
+            Transform tileWarning = tiles[(int)(allTileCoords[(int)rand].x), (int)(allTileCoords[(int)rand].y)];
+            SpriteRenderer tileRend = tileWarning.GetComponentInChildren<SpriteRenderer>();
+            Color initialColor = tileRend.color;
+            Color flashColor = Color.red;
+            float spawnTimer = 0;
+
+            while (spawnTimer < spawnDelay)
+            {
+                tileRend.color = Color.Lerp(initialColor,flashColor,Mathf.PingPong(spawnTimer*tileFlashSpeed,1));
+                spawnTimer += Time.deltaTime;
+                
+            }
+            
             Transform newSpike = Instantiate(spikePrefab);
             newSpike.position = spikePositon;
         }
@@ -101,6 +117,8 @@ public class MapGenerator : MonoBehaviour
                 Vector2 tilePosition = getCoordinate(x, y);
                 Transform newTile = Instantiate(tilePrefab);
                 newTile.position = tilePosition;
+
+                tiles[x, y] = newTile;
 
                 //adding top wall tiles
                 if(y == (mapSize.y-1))
