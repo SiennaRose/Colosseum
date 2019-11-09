@@ -9,7 +9,8 @@ public class MapGenerator : MonoBehaviour
     public Transform rightWallPrefab;
     public Transform leftWallPrefab;
     public Transform bottomWallPrefab;
-    public Transform spikePrefab; 
+    public Transform spikePrefab;
+    public Transform topRightCornerPrefab; 
     public Vector2 mapSize;
 
     public struct Coord
@@ -51,10 +52,8 @@ public class MapGenerator : MonoBehaviour
         int numSpikes = 3; 
         for(int x = 0; x < numSpikes; x++)
         {
-            float randX = Random.Range(0.0f,(float)(sizeOfList));
-            Debug.Log(randX);
-            //allTileCoords.FindIndex[randX];
-            Vector2 spikePositon = getCoordinate((int)(allTileCoords[(int)randX].x), (int)(allTileCoords[(int)randX].y));
+            float rand = Random.Range(0.0f,(float)(sizeOfList));
+            Vector2 spikePositon = getCoordinate((int)(allTileCoords[(int)rand].x), (int)(allTileCoords[(int)rand].y));
             Transform newSpike = Instantiate(spikePrefab);
             newSpike.position = spikePositon;
         }
@@ -62,6 +61,11 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateMap()
     {
+        //adding top right corner
+        Vector2 topRightPosition = new Vector2(mapSize.x/2+0.5f, mapSize.y/2+1.5f);
+        Transform newTopRightTile = Instantiate(topRightCornerPrefab);
+        newTopRightTile.position = topRightPosition;
+
         for (int x = 0; x < mapSize.x; x++)
         {
             for(int y = 0; y < mapSize.y; y++)
