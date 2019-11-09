@@ -11,6 +11,20 @@ public class MapGenerator : MonoBehaviour
     public Transform bottomWallPrefab;
     public Vector2 mapSize;
 
+    public struct Coord
+    {
+        public int x;
+        public int y;
+
+        public Coord(int x, int y)
+        {
+            this.x = x;
+            this.y = y; 
+        }
+    }
+
+    List<Coord> allTileCoords; 
+
     public void Start()
     {
         mapSize.x = 16;
@@ -20,11 +34,15 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateMap()
     {
+        allTileCoords = new List<Coord>(); 
+
         for(int x = 0; x < mapSize.x; x++)
         {
             for(int y = 0; y < mapSize.y; y++)
             {
-                Vector2 tilePosition = new Vector2(-mapSize.x/2 + 0.5f + x,-mapSize.y/2 + 0.5f + y);
+                allTileCoords.Add(new Coord(x,y));
+
+                Vector2 tilePosition = getCoordinate(x, y);
                 Transform newTile = Instantiate(tilePrefab);
                 newTile.position = tilePosition;
 
@@ -79,5 +97,10 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+    }
+
+    public Vector2 getCoordinate(int x, int y)
+    {
+        return new Vector2(-mapSize.x / 2 + 0.5f + x, -mapSize.y / 2 + 0.5f + y);
     }
 }
