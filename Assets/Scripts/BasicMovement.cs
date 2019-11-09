@@ -11,7 +11,7 @@ public class BasicMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal")*5, Input.GetAxis("Vertical")*5, 0.0f);
+        Vector3 movement = new Vector3(Input.GetAxis("Horizontal")*4, Input.GetAxis("Vertical")*4, 0.0f);
         
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);

@@ -24,28 +24,50 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    List<Coord> allTileCoords; 
+    public List<Coord> allTileCoords;
+    public int sizeOfList = 0;
+
+    bool check = true;
 
     public void Start()
     {
         mapSize.x = 16;
         mapSize.y = 7;
+        allTileCoords = new List<Coord>();
         GenerateMap();
+    }
+
+    public void Update()
+    {
+        if(check)
+        {
+            GenerateSpikes();
+            check = false;
+        }
+    }
+
+    public void GenerateSpikes()
+    {
+        int numSpikes = 3; 
+        for(int x = 0; x < numSpikes; x++)
+        {
+            float randX = Random.Range(0.0f,(float)(sizeOfList));
+            Debug.Log(randX);
+            //allTileCoords.FindIndex[randX];
+            Vector2 spikePositon = getCoordinate((int)(allTileCoords[(int)randX].x), (int)(allTileCoords[(int)randX].y));
+            Transform newSpike = Instantiate(spikePrefab);
+            newSpike.position = spikePositon;
+        }
     }
 
     public void GenerateMap()
     {
-        allTileCoords = new List<Coord>();
-
-        Vector2 spikePositon = getCoordinate(0, 0);
-        Transform newSpike = Instantiate(spikePrefab);
-        newSpike.position = spikePositon;
-
         for (int x = 0; x < mapSize.x; x++)
         {
             for(int y = 0; y < mapSize.y; y++)
             {
-                allTileCoords.Add(new Coord(x,y));
+                allTileCoords.Add(new Coord(x, y));
+                sizeOfList++;
 
                 Vector2 tilePosition = getCoordinate(x, y);
                 Transform newTile = Instantiate(tilePrefab);
