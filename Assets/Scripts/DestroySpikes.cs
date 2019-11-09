@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class DestroySpikes : MonoBehaviour
 {
-    public float lifetime = 10f;
+    public float lifetime = 1.0f;
 
     void Update()
     {
-        if(lifetime > 0)
+        if (lifetime > 0)
         {
             lifetime -= Time.deltaTime;
             if (lifetime <= 0)
+            {
                 Destruction();
-        }    
+            }
+        }
     }
     public void Destruction()
     {

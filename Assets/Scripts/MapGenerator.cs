@@ -29,30 +29,37 @@ public class MapGenerator : MonoBehaviour
     }
 
     public List<Coord> allTileCoords;
+    public List<Transform> spikes; 
     public int sizeOfList = 0;
-
-    bool check = true;
+    public float lifetime = 10.0f; 
 
     public void Start()
     {
         mapSize.x = 16;
         mapSize.y = 7;
         allTileCoords = new List<Coord>();
+        spikes = new List<Transform>();
         GenerateMap();
+        
     }
 
     public void Update()
     {
-        if(check)
+        if (lifetime > 0)
         {
-            GenerateSpikes();
-            check = false;
+            lifetime -= Time.deltaTime;
+            if (lifetime <= 0)
+            {
+                GenerateSpikes();
+                lifetime = 10.0f;
+            }
+
         }
     }
 
     public void GenerateSpikes()
     {
-        int numSpikes = 3; 
+        int numSpikes = 20; 
         for(int x = 0; x < numSpikes; x++)
         {
             float rand = Random.Range(0.0f,(float)(sizeOfList));
