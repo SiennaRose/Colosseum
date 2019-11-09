@@ -252,4 +252,6 @@ MonoBehaviour:
     type: 3}
   rightWallPrefab: {fileID: 38810015139895916, guid: 1849c97e87be36f4ebe5a2e29943996b,
     type: 3}
+  leftWallPrefab: {fileID: 5858099293304751085, guid: 7399ca31aca27a44f89e6f19cf139cba,
+    type: 3}
   mapSize: {x: 10, y: 10}

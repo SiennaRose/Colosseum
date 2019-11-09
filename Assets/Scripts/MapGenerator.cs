@@ -7,6 +7,7 @@ public class MapGenerator : MonoBehaviour
     public Transform tilePrefab;
     public Transform topWallPrefab;
     public Transform rightWallPrefab;
+    public Transform leftWallPrefab;
     public Vector2 mapSize;
 
     public void Start()
@@ -34,12 +35,12 @@ public class MapGenerator : MonoBehaviour
                     newWallTile.position = wallPosition;
                 }
 
-                //adding left and right walls
+                //adding right walls
                 if (x == (mapSize.x - 1))
                 {
-                    //adding extra wall on the top right to match with top wall tiles
                     if(y == (mapSize.y-1))
                     {
+                        //adding extra wall on the top right to match with top wall tiles
                         Vector2 rightTopWallPosition = new Vector2(-mapSize.x / 2 + 0.5f + x + 1, -mapSize.y / 2 + 0.5f + y+1);
                         Transform newRightTopWallTile = Instantiate(rightWallPrefab);
                         newRightTopWallTile.position = rightTopWallPosition;
@@ -49,15 +50,25 @@ public class MapGenerator : MonoBehaviour
                     Vector2 rightWallPosition = new Vector2(-mapSize.x / 2 + 0.5f + x + 1, -mapSize.y / 2 + 0.5f + y);
                     Transform newRightWallTile = Instantiate(rightWallPrefab);
                     newRightWallTile.position = rightWallPosition;
+                }
 
-                    //adding extra wall on the bottom right to match with bottom wall tiles
+                //adding left walls
+                if(x == 0)
+                {
                     if (y == (mapSize.y - 1))
                     {
-                        Vector2 rightBottomWallPosition = new Vector2(-mapSize.x / 2 + 0.5f + x+1, -mapSize.y / 2 + 0.5f + y + 1);
-                        Transform newRightBottomWallTile = Instantiate(rightWallPrefab);
-                        newRightBottomWallTile.position = rightBottomWallPosition;
+                        //adding extra wall on the top right to match with top wall tiles
+                        Vector2 leftTopWallPosition = new Vector2(-mapSize.x / 2 + 0.5f + x - 1, -mapSize.y / 2 + 0.5f + y+1);
+                        Transform newLeftTopWallTile = Instantiate(leftWallPrefab);
+                        newLeftTopWallTile.position = leftTopWallPosition;
                     }
+
+                    //adding normal left wall tiles
+                    Vector2 leftWallPosition = new Vector2(-mapSize.x / 2 + 0.5f + x-1, -mapSize.y / 2 + 0.5f + y);
+                    Transform newleftWallTile = Instantiate(leftWallPrefab);
+                    newleftWallTile.position = leftWallPosition;
                 }
+                
             }
         }
     }
