@@ -50,19 +50,19 @@ public class MapGenerator : MonoBehaviour
             lifetime -= Time.deltaTime;
             if (lifetime <= 0)
             {
-                GenerateSpikes();
+                StartCoroutine(GenerateSpikes());
                 lifetime = 10.0f;
             }
 
         }
     }
 
-    public void GenerateSpikes()
+    IEnumerator GenerateSpikes()
     {
         float spawnDelay = 1;
-        float tileFlashSpeed = 4; 
+        float speed = 4;
 
-        int numSpikes = 20; 
+        int numSpikes = 30; 
         for(int x = 0; x < numSpikes; x++)
         {
             float rand = Random.Range(0.0f,(float)(sizeOfList));
@@ -75,9 +75,9 @@ public class MapGenerator : MonoBehaviour
 
             while (spawnTimer < spawnDelay)
             {
-                tileRend.color = Color.Lerp(initialColor,flashColor,Mathf.PingPong(spawnTimer*tileFlashSpeed,1));
+                tileRend.color = Color.Lerp(initialColor,flashColor,Mathf.PingPong(spawnTimer*speed,1));
                 spawnTimer += Time.deltaTime;
-                
+                yield return null;
             }
             
             Transform newSpike = Instantiate(spikePrefab);
