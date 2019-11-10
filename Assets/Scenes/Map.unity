@@ -197,7 +197,8 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1127792688339093227, guid: 343279ba423f6a745ac2e9c966fd02d3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 343279ba423f6a745ac2e9c966fd02d3, type: 3}
 --- !u!1 &1101650590
 GameObject:
@@ -347,3 +348,4 @@ MonoBehaviour:
     type: 3}
   mapSize: {x: 10, y: 10}
   sizeOfList: 0
+  lifetime: 1
