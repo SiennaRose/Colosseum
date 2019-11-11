@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DestroySpikes : MonoBehaviour
+public class DestroyPotion : MonoBehaviour
 {
-    public float lifetime = 1.0f;
+    public float lifetime = 10.0f;
 
+    // Update is called once per frame
     void Update()
     {
         if (lifetime > 0)
         {
             lifetime -= Time.deltaTime;
-            if (lifetime <= 0)
+            if (lifetime == 0)
             {
                 Destruction();
             }
@@ -21,11 +22,10 @@ public class DestroySpikes : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
-            UIController.Instance.myPlayer.GetComponent<PlayerState>().damage(10);
-           // player = GameObject.Find("Player");
-          //  StartCoroutine(player.GetComponent<BasicMovement>().Knockback();
+            UIController.Instance.myPlayer.GetComponent<PlayerState>().heal(10);
+            Destruction();
         }
     }
 

@@ -38,6 +38,8 @@ public class PlayerState : MonoBehaviour
     public void heal(int hp)
     {
         if (currHP != maxHP)
-            currHP += hp; 
+            currHP += hp;
+        hptxt = GameObject.Find("HPText");
+        hptxt.GetComponent<Text>().text = "HP = " + currHP.ToString();
     }
 }

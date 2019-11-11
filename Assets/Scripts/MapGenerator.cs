@@ -16,6 +16,7 @@ public class MapGenerator : MonoBehaviour
     public Transform bottomLeftPrefab;
     //public Transform rightGatePrefab;
     //public Transform leftGatePrefab;
+    public Transform potionPrefab; 
     public Vector2 mapSize;
 
     public struct Coord
@@ -26,7 +27,7 @@ public class MapGenerator : MonoBehaviour
         public Coord(int x, int y)
         {
             this.x = x;
-            this.y = y; 
+            this.y = y;
         }
     }
 
@@ -43,6 +44,7 @@ public class MapGenerator : MonoBehaviour
         mapSize.y = 7;
         allTileCoords = new List<Coord>();
         tiles = new Transform[(int)mapSize.x,(int)mapSize.y];
+    
         GenerateMap();
         
     }
@@ -55,10 +57,28 @@ public class MapGenerator : MonoBehaviour
             if (lifetime <= 0)
             {
                 StartCoroutine(GenerateSpikes());
+                GeneratePotion();
                 lifetime = 10.0f;
                 difficulty++;
             }
 
+        }
+    }
+
+    public void freeTile(int x, int y)
+    {
+      
+    }
+
+    void GeneratePotion()
+    {
+        for(int x = 0; x < 2; x++)
+        {
+            int randX = Random.Range(0, (int)(mapSize.x));
+            int randY = Random.Range(0, (int)(mapSize.y));
+            Vector2 potionPosition = getCoordinate((int)(allTileCoords[randX].x), (int)(allTileCoords[randY].y));
+            Transform newPotion = Instantiate(potionPrefab);
+            newPotion.position = potionPosition;
         }
     }
 
@@ -72,9 +92,10 @@ public class MapGenerator : MonoBehaviour
 
         for(int x = 0; x < numSpikes; x++)
         {
-            float rand = Random.Range(0.0f, (float)(sizeOfList));
-            Vector2 spikePositon = getCoordinate((int)(allTileCoords[(int)rand].x), (int)(allTileCoords[(int)rand].y));
-            Transform tileWarning = tiles[(int)(allTileCoords[(int)rand].x), (int)(allTileCoords[(int)rand].y)];
+            int randX = Random.Range(0, (int)(sizeOfList));
+            //int randY = Random.Range(0, (int)(sizeOfList));
+            Vector2 spikePositon = getCoordinate((int)(allTileCoords[randX].x), (int)(allTileCoords[randX].y));
+            Transform tileWarning = tiles[(int)(allTileCoords[randX].x), (int)(allTileCoords[randX].y)];
             SpriteRenderer tileRend = tileWarning.GetComponentInChildren<SpriteRenderer>();
             Color initialColor = tileRend.color;
             Color flashColor = Color.red;
