@@ -20,4 +20,15 @@ public class BasicMovement : MonoBehaviour
         //transform.position = transform.position + movement * Time.deltaTime;
         rb.velocity = new Vector2(movement.x, movement.y);
     }
+
+    //public IEnumerator Knockback()
+    //{
+     //   float timer = 0;    
+      //  while(knockDur > timer)
+      //  {
+      //      timer += Time.deltaTime;
+       //     rb.AddForce(transform.position.x * -100,transform.y*100);
+       // }
+      //  yield return 0;
+    //}
 }

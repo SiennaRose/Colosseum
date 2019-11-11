@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerState : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class PlayerState : MonoBehaviour
         public GameObject item; 
     }
 
+    public GameObject hptxt; 
     public int currHP = 100;
     public int maxHP = 100;
     public List<Items> items = new List<Items>(); 
@@ -26,6 +29,8 @@ public class PlayerState : MonoBehaviour
     public void damage(int dmg)
     {
         currHP -= dmg;
+        hptxt = GameObject.Find("HPText");
+        hptxt.GetComponent<Text>().text = "HP = " + currHP.ToString();
         if (currHP == 0)
             UIController.Instance.Died();
     }

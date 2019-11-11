@@ -14,6 +14,8 @@ public class MapGenerator : MonoBehaviour
     public Transform topLeftCornerPrefab;
     public Transform bottomRightPrefab;
     public Transform bottomLeftPrefab;
+    //public Transform rightGatePrefab;
+    //public Transform leftGatePrefab;
     public Vector2 mapSize;
 
     public struct Coord
@@ -126,6 +128,7 @@ public class MapGenerator : MonoBehaviour
                     Vector2 wallPosition = new Vector2(-mapSize.x/2 + 0.5f + x, -mapSize.y / 2 + 0.5f + y+1);
                     Transform newWallTile = Instantiate(topWallPrefab);
                     newWallTile.position = wallPosition;
+                    
                 }
 
                 //adding bottom wall tiles

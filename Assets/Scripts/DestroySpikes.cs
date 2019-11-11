@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DestroySpikes : MonoBehaviour
 {
     public float lifetime = 1.0f;
+    public GameObject player;
 
     void Update()
     {
@@ -22,7 +23,11 @@ public class DestroySpikes : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.tag == "Player")
-        UIController.Instance.myPlayer.GetComponent<PlayerState>().damage(10);      
+        {
+            UIController.Instance.myPlayer.GetComponent<PlayerState>().damage(10);
+           // player = GameObject.Find("Player");
+          //  StartCoroutine(player.GetComponent<BasicMovement>().Knockback();
+        }
     }
 
     public void Destruction()
