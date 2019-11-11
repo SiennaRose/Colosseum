@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour
 {
     public static UIController instance = null;
-    public PlayerState myPlayer; 
+    public PlayerState myPlayer;
 
     public static UIController Instance
     {
@@ -28,9 +28,20 @@ public class UIController : MonoBehaviour
         myPlayer = gameObject.AddComponent<PlayerState>() as PlayerState;
     }
 
+    void Start()
+    {
+        StartCoroutine(Splash());
+    }
+
+    public IEnumerator Splash()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(1);
+    }
+
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void QuitGame()
@@ -44,12 +55,12 @@ public class UIController : MonoBehaviour
 
     public void Back()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void Died()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
 }
