@@ -56,8 +56,8 @@ public class MapGenerator : MonoBehaviour
             lifetime -= Time.deltaTime;
             if (lifetime <= 0)
             {
-                StartCoroutine(GenerateSpikes());
                 GeneratePotion();
+                StartCoroutine(GenerateSpikes());
                 lifetime = 10.0f;
                 difficulty++;
             }
@@ -74,9 +74,9 @@ public class MapGenerator : MonoBehaviour
     {
         for(int x = 0; x < 2; x++)
         {
-            int randX = Random.Range(0, (int)(mapSize.x));
-            int randY = Random.Range(0, (int)(mapSize.y));
-            Vector2 potionPosition = getCoordinate((int)(allTileCoords[randX].x), (int)(allTileCoords[randY].y));
+            int randX = Random.Range(0, (int)(sizeOfList));
+            //int randY = Random.Range(0, (int)(mapSize.y));
+            Vector2 potionPosition = getCoordinate((int)(allTileCoords[randX].x), (int)(allTileCoords[randX].y));
             Transform newPotion = Instantiate(potionPrefab);
             newPotion.position = potionPosition;
         }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DestroyPotion : MonoBehaviour
 {
     public float lifetime = 10.0f;
+    public AudioClip drinkSound;
 
     // Update is called once per frame
     void Update()
@@ -25,12 +26,16 @@ public class DestroyPotion : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             UIController.Instance.myPlayer.GetComponent<PlayerState>().heal(10);
+            AudioSource audio = GetComponent<AudioSource>();
+            audio.PlayOneShot(drinkSound);
+           // gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            //yield return new WaitForSeconds(3);
             Destruction();
         }
     }
 
     public void Destruction()
     {
-        Destroy(this.gameObject);
+        Destroy(this.gameObject,drinkSound.length);
     }
 }

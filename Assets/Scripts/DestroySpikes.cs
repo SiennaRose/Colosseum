@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class DestroySpikes : MonoBehaviour
 {
     public float lifetime = 1.0f;
+    public AudioClip stabbedSound;
+
 
     void Update()
     {
@@ -24,8 +26,8 @@ public class DestroySpikes : MonoBehaviour
         if(col.gameObject.tag == "Player")
         {
             UIController.Instance.myPlayer.GetComponent<PlayerState>().damage(10);
-           // player = GameObject.Find("Player");
-          //  StartCoroutine(player.GetComponent<BasicMovement>().Knockback();
+            AudioSource audio = GetComponent<AudioSource>();
+            audio.PlayOneShot(stabbedSound);
         }
     }
 
