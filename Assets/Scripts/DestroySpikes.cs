@@ -1,16 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DestroySpikes : MonoBehaviour
 {
     public float lifetime = 1.0f;
-    private PlayerState player; 
-
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerState>();
-    }
 
     void Update()
     {
@@ -26,8 +21,8 @@ public class DestroySpikes : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.CompareTag("Player"))
-            player.damage(10);
+        if(col.gameObject.tag == "Player")
+        UIController.Instance.myPlayer.GetComponent<PlayerState>().damage(10);      
     }
 
     public void Destruction()

@@ -47,4 +47,9 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void Died()
+    {
+        SceneManager.LoadScene(2);
+    }
+
 }

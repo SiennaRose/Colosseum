@@ -25,7 +25,9 @@ public class PlayerState : MonoBehaviour
 
     public void damage(int dmg)
     {
-        currHP -= dmg; 
+        currHP -= dmg;
+        if (currHP == 0)
+            UIController.Instance.Died();
     }
 
     public void heal(int hp)
