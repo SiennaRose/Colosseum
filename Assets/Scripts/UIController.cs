@@ -7,6 +7,7 @@ public class UIController : MonoBehaviour
 {
     public static UIController instance = null;
     public PlayerState myPlayer;
+    public AudioClip startSound;
 
     public static UIController Instance
     {
@@ -26,6 +27,8 @@ public class UIController : MonoBehaviour
                 Destroy(gameObject);
         }
         myPlayer = gameObject.AddComponent<PlayerState>() as PlayerState;
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.PlayOneShot(startSound);
     }
 
     void Start()
@@ -35,7 +38,7 @@ public class UIController : MonoBehaviour
 
     public IEnumerator Splash()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         SceneManager.LoadScene(1);
     }
 

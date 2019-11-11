@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DestroyPotion : MonoBehaviour
+public class DestroyCoin : MonoBehaviour
 {
     public float lifetime = 10.0f;
     public AudioClip drinkSound;
@@ -30,7 +30,7 @@ public class DestroyPotion : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            UIController.Instance.myPlayer.GetComponent<PlayerState>().heal(10);
+            UIController.Instance.myPlayer.GetComponent<PlayerState>().points(1);
             AudioSource audio = GetComponent<AudioSource>();
             audio.PlayOneShot(drinkSound);
             gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
@@ -41,6 +41,6 @@ public class DestroyPotion : MonoBehaviour
 
     public void Destruction()
     {
-        Destroy(this.gameObject,drinkSound.length);
+        Destroy(this.gameObject, drinkSound.length);
     }
 }

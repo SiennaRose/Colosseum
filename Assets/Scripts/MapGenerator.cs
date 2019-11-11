@@ -16,7 +16,8 @@ public class MapGenerator : MonoBehaviour
     public Transform bottomLeftPrefab;
     //public Transform rightGatePrefab;
     //public Transform leftGatePrefab;
-    public Transform potionPrefab; 
+    public Transform potionPrefab;
+    public Transform coinPrefab; 
     public Vector2 mapSize;
 
     public struct Coord
@@ -46,7 +47,6 @@ public class MapGenerator : MonoBehaviour
         tiles = new Transform[(int)mapSize.x,(int)mapSize.y];
     
         GenerateMap();
-        
     }
 
     public void Update()
@@ -57,6 +57,7 @@ public class MapGenerator : MonoBehaviour
             if (lifetime <= 0)
             {
                 GeneratePotion();
+                GenerateCoin();
                 StartCoroutine(GenerateSpikes());
                 lifetime = 10.0f;
                 difficulty++;
@@ -65,20 +66,27 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    public void freeTile(int x, int y)
-    {
-      
-    }
-
     void GeneratePotion()
     {
-        for(int x = 0; x < 2; x++)
+        for(int x = 0; x < 1; x++)
         {
             int randX = Random.Range(0, (int)(sizeOfList));
             //int randY = Random.Range(0, (int)(mapSize.y));
             Vector2 potionPosition = getCoordinate((int)(allTileCoords[randX].x), (int)(allTileCoords[randX].y));
             Transform newPotion = Instantiate(potionPrefab);
             newPotion.position = potionPosition;
+        }
+    }
+
+    void GenerateCoin()
+    {
+        for (int x = 0; x < 2; x++)
+        {
+            int randX = Random.Range(0, (int)(sizeOfList));
+            //int randY = Random.Range(0, (int)(mapSize.y));
+            Vector2 coinPosition = getCoordinate((int)(allTileCoords[randX].x), (int)(allTileCoords[randX].y));
+            Transform newCoin = Instantiate(coinPrefab);
+            newCoin.position =coinPosition;
         }
     }
 
@@ -90,7 +98,8 @@ public class MapGenerator : MonoBehaviour
         if (difficulty < 10)
             numSpikes += (difficulty*2);
 
-        for(int x = 0; x < numSpikes; x++)
+
+        for (int x = 0; x < numSpikes; x++)
         {
             int randX = Random.Range(0, (int)(sizeOfList));
             //int randY = Random.Range(0, (int)(sizeOfList));
