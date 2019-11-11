@@ -120,7 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &1089693686
+--- !u!1001 &662073470
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -130,6 +130,11 @@ PrefabInstance:
     - target: {fileID: 1127792688339093218, guid: 343279ba423f6a745ac2e9c966fd02d3,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127792688339093218, guid: 343279ba423f6a745ac2e9c966fd02d3,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1127792688339093223, guid: 343279ba423f6a745ac2e9c966fd02d3,
@@ -186,16 +191,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1127792688339093220, guid: 343279ba423f6a745ac2e9c966fd02d3,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1127792688339093225, guid: 343279ba423f6a745ac2e9c966fd02d3,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1127792688339093227, guid: 343279ba423f6a745ac2e9c966fd02d3, type: 3}
@@ -349,3 +344,24 @@ MonoBehaviour:
   mapSize: {x: 10, y: 10}
   sizeOfList: 0
   lifetime: 1
+--- !u!1 &2128099716 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1127792688339093218, guid: 343279ba423f6a745ac2e9c966fd02d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 662073470}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2128099717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128099716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596235d688d03c34bbe2dd0b8ec602f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currHP: 100
+  maxHP: 100
+  items: []
